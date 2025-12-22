@@ -143,7 +143,7 @@ const Game = () => {
           {Array(opponentHandSize).fill(0).map((_, i) => (
             <Card 
               key={i} 
-              card={{ suit: 'cups', value: 1 }} 
+              card={{ suit: 'coppe', value: 1 }} 
               showBack={true} 
               disabled={true}
             />

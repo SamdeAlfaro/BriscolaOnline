@@ -10,99 +10,74 @@ You need **41 images** total:
 
 Save your images with these exact names in `client/src/assets/cards/`:
 
-### Cups (Coppe) - 10 cards
-- `cups_1.png` - Ace of Cups
-- `cups_2.png` - Two of Cups
-- `cups_3.png` - Three of Cups
-- `cups_4.png` - Four of Cups
-- `cups_5.png` - Five of Cups
-- `cups_6.png` - Six of Cups
-- `cups_7.png` - Seven of Cups
-- `cups_8.png` - Jack of Cups (Fante)
-- `cups_9.png` - Knight of Cups (Cavallo)
-- `cups_10.png` - King of Cups (Re)
+### Coppe (Cups) - 10 cards
+- `1_coppe.jpg` - Asso di Coppe (Ace of Cups)
+- `2_coppe.jpg` - Due di Coppe
+- `3_coppe.jpg` - Tre di Coppe
+- `4_coppe.jpg` - Quattro di Coppe
+- `5_coppe.jpg` - Cinque di Coppe
+- `6_coppe.jpg` - Sei di Coppe
+- `7_coppe.jpg` - Sette di Coppe
+- `8_coppe.jpg` - Fante di Coppe (Jack)
+- `9_coppe.jpg` - Cavallo di Coppe (Knight)
+- `10_coppe.jpg` - Re di Coppe (King)
 
-### Coins (Denari) - 10 cards
-- `coins_1.png` - Ace of Coins
-- `coins_2.png` - Two of Coins
-- `coins_3.png` - Three of Coins
-- `coins_4.png` - Four of Coins
-- `coins_5.png` - Five of Coins
-- `coins_6.png` - Six of Coins
-- `coins_7.png` - Seven of Coins
-- `coins_8.png` - Jack of Coins
-- `coins_9.png` - Knight of Coins
-- `coins_10.png` - King of Coins
+### Denari (Coins) - 10 cards
+- `1_denari.jpg` - Asso di Denari
+- `2_denari.jpg` - Due di Denari
+- `3_denari.jpg` - Tre di Denari
+- `4_denari.jpg` - Quattro di Denari
+- `5_denari.jpg` - Cinque di Denari
+- `6_denari.jpg` - Sei di Denari
+- `7_denari.jpg` - Sette di Denari
+- `8_denari.jpg` - Fante di Denari
+- `9_denari.jpg` - Cavallo di Denari
+- `10_denari.jpg` - Re di Denari
 
-### Swords (Spade) - 10 cards
-- `swords_1.png` - Ace of Swords
-- `swords_2.png` - Two of Swords
-- `swords_3.png` - Three of Swords
-- `swords_4.png` - Four of Swords
-- `swords_5.png` - Five of Swords
-- `swords_6.png` - Six of Swords
-- `swords_7.png` - Seven of Swords
-- `swords_8.png` - Jack of Swords
-- `swords_9.png` - Knight of Swords
-- `swords_10.png` - King of Swords
+### Spade (Swords) - 10 cards
+- `1_spade.jpg` - Asso di Spade
+- `2_spade.jpg` - Due di Spade
+- `3_spade.jpg` - Tre di Spade
+- `4_spade.jpg` - Quattro di Spade
+- `5_spade.jpg` - Cinque di Spade
+- `6_spade.jpg` - Sei di Spade
+- `7_spade.jpg` - Sette di Spade
+- `8_spade.jpg` - Fante di Spade
+- `9_spade.jpg` - Cavallo di Spade
+- `10_spade.jpg` - Re di Spade
 
-### Clubs (Bastoni) - 10 cards
-- `clubs_1.png` - Ace of Clubs
-- `clubs_2.png` - Two of Clubs
-- `clubs_3.png` - Three of Clubs
-- `clubs_4.png` - Four of Clubs
-- `clubs_5.png` - Five of Clubs
-- `clubs_6.png` - Six of Clubs
-- `clubs_7.png` - Seven of Clubs
-- `clubs_8.png` - Jack of Clubs
-- `clubs_9.png` - Knight of Clubs
-- `clubs_10.png` - King of Clubs
+### Bastoni (Clubs) - 10 cards
+- `1_bastoni.jpg` - Asso di Bastoni
+- `2_bastoni.jpg` - Due di Bastoni
+- `3_bastoni.jpg` - Tre di Bastoni
+- `4_bastoni.jpg` - Quattro di Bastoni
+- `5_bastoni.jpg` - Cinque di Bastoni
+- `6_bastoni.jpg` - Sei di Bastoni
+- `7_bastoni.jpg` - Sette di Bastoni
+- `8_bastoni.jpg` - Fante di Bastoni
+- `9_bastoni.jpg` - Cavallo di Bastoni
+- `10_bastoni.jpg` - Re di Bastoni
 
 ### Card Back
 - `back.png` - The back design (shows on opponent's cards)
 
+## Naming Pattern
+
+```
+{value}_{suit}.jpg
+```
+
+Where:
+- **value**: 1-10
+- **suit**: coppe, denari, spade, bastoni
+
+The code will try `.jpg` first, then fall back to `.png` if not found.
+
 ## Image Specifications
 
-- **Format**: PNG recommended (with transparency if desired)
+- **Format**: JPG or PNG
 - **Recommended size**: 240px × 360px (or any 2:3 ratio)
 - **Quality**: High-resolution for sharp rendering
-
-## Where to Find Card Images
-
-### Option 1: Download Italian Card Deck Images
-Search for "Italian playing cards PNG" or "Carte napoletane PNG"
-
-Popular sources:
-- Wikimedia Commons (free, public domain)
-- OpenGameArt.org (free game assets)
-- Freepik (some free options)
-
-### Option 2: Use a Card Deck Generator
-- PlayingCards.io
-- Custom card deck services
-
-### Option 3: Scan Physical Cards
-If you have an Italian card deck, you can scan them yourself!
-
-## Quick Batch Rename Tips
-
-If you download a full deck but the names don't match:
-
-### On Mac/Linux:
-```bash
-# Example: rename files from "cup-1.png" to "cups_1.png"
-for i in {1..10}; do
-  mv "cup-$i.png" "cups_$i.png"
-done
-```
-
-### On Windows (PowerShell):
-```powershell
-# Example: rename files
-1..10 | ForEach-Object { 
-  Rename-Item "cup-$_.png" "cups_$_.png" 
-}
-```
 
 ## After Adding Images
 
@@ -112,7 +87,7 @@ done
 
 ## Fallback Behavior
 
-If images are not found, the game will automatically fall back to the emoji/text-based cards, so you can add images gradually.
+If images are not found, the game will automatically fall back to emoji/text-based cards with Italian letters (F=Fante, C=Cavallo, R=Re), so you can add images gradually.
 
 ## Testing
 

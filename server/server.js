@@ -34,7 +34,7 @@ function generateRoomCode() {
 
 // Initialize a new game state
 function createGameState() {
-  const suits = ['cups', 'coins', 'swords', 'clubs'];
+  const suits = ['coppe', 'denari', 'spade', 'bastoni'];
   const values = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]; // 1=Ace, 8=Jack, 9=Knight, 10=King
   
   // Create deck

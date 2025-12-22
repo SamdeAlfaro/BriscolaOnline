@@ -5,13 +5,22 @@ const Card = ({ card, onClick, disabled, showBack = false }) => {
   // Generate the path to the card image
   const getCardImagePath = () => {
     if (showBack) {
-      return require('./assets/cards/back.png');
+      try {
+        return require('./assets/cards/back.png');
+      } catch (err) {
+        return null;
+      }
     }
     try {
-      return require(`./assets/cards/${card.suit}_${card.value}.png`);
+      // Use format: 1_spade.jpg, 2_denari.jpg, etc.
+      return require(`./assets/cards/${card.value}_${card.suit}.jpg`);
     } catch (err) {
-      // Fallback if image doesn't exist
-      return null;
+      // Try PNG as fallback
+      try {
+        return require(`./assets/cards/${card.value}_${card.suit}.png`);
+      } catch (err2) {
+        return null;
+      }
     }
   };
 
@@ -28,25 +37,25 @@ const Card = ({ card, onClick, disabled, showBack = false }) => {
         5: '5',
         6: '6',
         7: '7',
-        8: 'J',
-        9: 'K',
-        10: 'Q'
+        8: 'F',  // Fante
+        9: 'C',  // Cavallo
+        10: 'R'  // Re
       };
       return displays[value];
     };
 
     const getSuitSymbol = (suit) => {
       const symbols = {
-        cups: '🏆',
-        coins: '🪙',
-        swords: '⚔️',
-        clubs: '🌿'
+        coppe: '🏆',
+        denari: '🪙',
+        spade: '⚔️',
+        bastoni: '🌿'
       };
       return symbols[suit];
     };
 
     const getSuitColor = (suit) => {
-      return suit === 'cups' || suit === 'coins' ? '#d4af37' : '#2c3e50';
+      return suit === 'coppe' || suit === 'denari' ? '#d4af37' : '#2c3e50';
     };
 
     return (

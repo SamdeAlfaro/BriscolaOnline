@@ -11,7 +11,7 @@ echo ""
 
 # Check card back
 if [ -f "$CARDS_DIR/back.png" ]; then
-  echo "✓ Card back found"
+  echo "✓ Card back found (back.png)"
 else
   echo "✗ Missing: back.png"
   ((MISSING++))
@@ -19,15 +19,23 @@ fi
 
 echo ""
 
-# Check all suits
-SUITS=("cups" "coins" "swords" "clubs")
-for suit in "${SUITS[@]}"; do
-  echo "Checking $suit:"
+# Check all suits (Italian names)
+SUITS=("coppe" "denari" "spade" "bastoni")
+SUIT_NAMES=("Coppe (Cups)" "Denari (Coins)" "Spade (Swords)" "Bastoni (Clubs)")
+
+for i in "${!SUITS[@]}"; do
+  suit="${SUITS[$i]}"
+  suit_name="${SUIT_NAMES[$i]}"
+  echo "Checking $suit_name:"
+  
   for value in {1..10}; do
-    if [ -f "$CARDS_DIR/${suit}_${value}.png" ]; then
-      echo "  ✓ ${suit}_${value}.png"
+    # Check for .jpg first, then .png
+    if [ -f "$CARDS_DIR/${value}_${suit}.jpg" ]; then
+      echo "  ✓ ${value}_${suit}.jpg"
+    elif [ -f "$CARDS_DIR/${value}_${suit}.png" ]; then
+      echo "  ✓ ${value}_${suit}.png"
     else
-      echo "  ✗ Missing: ${suit}_${value}.png"
+      echo "  ✗ Missing: ${value}_${suit}.jpg (or .png)"
       ((MISSING++))
     fi
   done
@@ -39,5 +47,8 @@ if [ $MISSING -eq 0 ]; then
 else
   echo "⚠️  Missing $MISSING image(s)"
   echo ""
-  echo "See CARD_IMAGES_GUIDE.md for naming conventions"
+  echo "Expected format: {value}_{suit}.jpg"
+  echo "Example: 1_coppe.jpg, 2_denari.jpg, 10_spade.jpg"
+  echo ""
+  echo "See CARD_IMAGES_GUIDE.md for complete naming conventions"
 fi
