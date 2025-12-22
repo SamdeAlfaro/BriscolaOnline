@@ -540,7 +540,6 @@ const Game = () => {
             
             {trumpCard && deckSize > 0 && (
               <div className="trump-card-holder">
-                <div className="trump-label">Briscola</div>
                 <Card card={trumpCard} disabled={true} />
               </div>
             )}
