@@ -2,32 +2,20 @@ import React from 'react';
 import './Card.css';
 
 const Card = ({ card, onClick, disabled, showBack = false }) => {
-  // Generate the path to the card image
+  // Generate the path to the card image (from public folder)
   const getCardImagePath = () => {
     if (showBack) {
-      try {
-        return require('./assets/cards/back.png');
-      } catch (err) {
-        return null;
-      }
+      return '/cards/back.png';
     }
-    try {
-      // Use format: 1_spade.jpg, 2_denari.jpg, etc.
-      return require(`./assets/cards/${card.value}_${card.suit}.jpg`);
-    } catch (err) {
-      // Try PNG as fallback
-      try {
-        return require(`./assets/cards/${card.value}_${card.suit}.png`);
-      } catch (err2) {
-        return null;
-      }
-    }
+    // Try jpg first, then png
+    return `/cards/${card.value}_${card.suit}.jpg`;
   };
 
+  const [imageError, setImageError] = React.useState(false);
   const imagePath = getCardImagePath();
 
   // Fallback rendering if no image is available
-  if (!imagePath) {
+  if (imageError) {
     const getCardDisplay = (value) => {
       const displays = {
         1: 'A',
@@ -51,12 +39,20 @@ const Card = ({ card, onClick, disabled, showBack = false }) => {
         spade: '⚔️',
         bastoni: '🌿'
       };
-      return symbols[suit];
+      return symbols[suit] || '?';
     };
 
     const getSuitColor = (suit) => {
       return suit === 'coppe' || suit === 'denari' ? '#d4af37' : '#2c3e50';
     };
+
+    if (showBack) {
+      return (
+        <div className="card card-back-placeholder">
+          🂠
+        </div>
+      );
+    }
 
     return (
       <div 
@@ -84,9 +80,10 @@ const Card = ({ card, onClick, disabled, showBack = false }) => {
       onClick={disabled ? null : onClick}
     >
       <img 
-        src={imagePath} 
+        src={imagePath}
         alt={showBack ? "Card back" : `${card.suit} ${card.value}`}
         className="card-img"
+        onError={() => setImageError(true)}
       />
     </div>
   );
