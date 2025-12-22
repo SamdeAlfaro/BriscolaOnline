@@ -303,6 +303,11 @@ const Game = () => {
     }
   };
 
+  const cancelRoom = () => {
+    socket.disconnect();
+    window.location.reload();
+  };
+
   if (gameState === 'menu') {
     return (
       <div className="menu">
@@ -338,6 +343,9 @@ const Game = () => {
           <h2>{roomCode}</h2>
           <p className="room-code-instruction">Share this code with your friend!</p>
         </div>
+        <button onClick={cancelRoom} className="btn-cancel">
+          Cancel Room
+        </button>
       </div>
     );
   }
@@ -532,6 +540,7 @@ const Game = () => {
             
             {trumpCard && deckSize > 0 && (
               <div className="trump-card-holder">
+                <div className="trump-label">Briscola</div>
                 <Card card={trumpCard} disabled={true} />
               </div>
             )}
