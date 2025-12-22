@@ -1,3 +1,4 @@
+/* Base styles */
 .menu {
   display: flex;
   flex-direction: column;
@@ -63,7 +64,7 @@
   border-radius: 8px;
   text-align: center;
   text-transform: uppercase;
-  width: 150px;
+  width: 250px;
 }
 
 .error {
@@ -98,11 +99,245 @@
   font-family: monospace;
 }
 
-.room-code-instruction {
-  font-size: 1.2rem;
-  opacity: 0.9;
+/* Dice Roll Screen */
+.dice-roll-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+  color: white;
 }
 
+.dice-roll-screen h1 {
+  margin-bottom: 3rem;
+  font-size: 2rem;
+}
+
+.dice-container {
+  display: flex;
+  gap: 3rem;
+}
+
+.dice {
+  width: 100px;
+  height: 100px;
+  background: white;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.dice.rolling {
+  animation: diceRoll 0.1s infinite;
+}
+
+@keyframes diceRoll {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(90deg); }
+  50% { transform: rotate(180deg); }
+  75% { transform: rotate(270deg); }
+}
+
+.dice-face {
+  font-size: 3rem;
+  color: #333;
+  font-weight: bold;
+}
+
+.dice-message {
+  margin-top: 3rem;
+  font-size: 1.5rem;
+  text-align: center;
+  padding: 1.5rem 3rem;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  animation: fadeIn 0.5s ease-in;
+}
+
+/* Shuffle Screen */
+.shuffle-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+  color: white;
+}
+
+.shuffle-screen h1 {
+  margin-bottom: 3rem;
+  font-size: 2rem;
+}
+
+.shuffle-animation {
+  position: relative;
+  width: 400px;
+  height: 300px;
+}
+
+.deck-shuffle {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.shuffle-card {
+  position: absolute;
+  font-size: 80px;
+  animation: shuffle 1s ease-in-out infinite;
+}
+
+@keyframes shuffle {
+  0%, 100% {
+    transform: translateX(-100px) rotate(-10deg);
+  }
+  50% {
+    transform: translateX(100px) rotate(10deg);
+  }
+}
+
+/* Cutting Screen */
+.cutting-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+  color: white;
+}
+
+.cutting-screen h1 {
+  margin-bottom: 3rem;
+  font-size: 2rem;
+}
+
+.cut-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+.deck-to-cut {
+  position: relative;
+  width: 700px;
+  height: 200px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.deck-visual {
+  position: relative;
+  width: 100px;
+  height: 140px;
+  z-index: 1;
+}
+
+.stacked-card {
+  position: absolute;
+  width: 80px;
+  height: 120px;
+  background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+  border: 2px solid #8b0000;
+  border-radius: 8px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.cut-line {
+  position: absolute;
+  width: 6px;
+  height: 100%;
+  background: linear-gradient(180deg, #FFD700 0%, #FFA500 100%);
+  box-shadow: 0 0 30px #FFD700, 0 0 60px rgba(255, 215, 0, 0.5);
+  top: 0;
+  z-index: 10;
+  transition: none; /* Remove transition for manual control */
+}
+
+.cut-line.cutting {
+  animation: cutSlice 1s ease-out;
+}
+
+@keyframes cutSlice {
+  0% {
+    height: 100%;
+    opacity: 1;
+  }
+  100% {
+    height: 0%;
+    top: 50%;
+    opacity: 0;
+  }
+}
+
+.cut-button {
+  padding: 1.5rem 3rem;
+  font-size: 1.5rem;
+  background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+  color: #333;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: bold;
+  box-shadow: 0 5px 20px rgba(255, 215, 0, 0.4);
+  transition: all 0.3s;
+  text-transform: uppercase;
+  letter-spacing: 0.1rem;
+}
+
+.cut-button:hover {
+  transform: scale(1.1);
+  box-shadow: 0 8px 30px rgba(255, 215, 0, 0.6);
+}
+
+.cut-button:active {
+  transform: scale(1.05);
+}
+
+/* Dealing Screen */
+.dealing-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+  color: white;
+}
+
+.dealing-animation {
+  margin-top: 2rem;
+}
+
+.dealer-deck {
+  font-size: 100px;
+  animation: dealing 0.5s ease-in-out infinite;
+}
+
+@keyframes dealing {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+/* Game Screen */
 .game {
   min-height: 100vh;
   background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
@@ -111,22 +346,13 @@
 
 .game-header {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   padding: 1rem;
   background: rgba(255, 255, 255, 0.1);
   border-radius: 8px;
   color: white;
   margin-bottom: 1rem;
-}
-
-.score {
-  display: flex;
-  gap: 2rem;
-}
-
-.score h3 {
-  margin: 0;
 }
 
 .room-info {
@@ -139,25 +365,23 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 2rem;
+  gap: 1rem;
+  padding: 1rem;
 }
 
-.opponent-hand {
+.opponent-area, .player-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+}
+
+.opponent-hand, .my-hand {
   display: flex;
   gap: 10px;
-}
-
-.card-back {
-  width: 80px;
-  height: 120px;
-  background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
-  border: 3px solid #8b0000;
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
   justify-content: center;
-  font-size: 48px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+  flex-wrap: wrap;
 }
 
 .play-area {
@@ -166,83 +390,326 @@
   flex-direction: column;
   align-items: center;
   gap: 1rem;
+  padding: 1.5rem;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 16px;
+  width: 100%;
+  max-width: 800px;
 }
 
-.trump-info {
+/* Deck Area with Trump */
+.deck-area {
   display: flex;
+  gap: 3rem;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.deck-stack {
+  position: relative;
+  display: flex;
+  flex-direction: column;
   align-items: center;
   gap: 1rem;
+}
+
+.deck-pile {
+  position: relative;
+  width: 80px;
+  height: 120px;
+}
+
+.deck-card {
+  position: absolute;
+}
+
+.deck-count {
+  color: white;
+  font-weight: bold;
+  font-size: 1.1rem;
   background: rgba(255, 255, 255, 0.1);
-  padding: 1rem;
+  padding: 0.5rem 1rem;
   border-radius: 8px;
 }
 
-.trump-label, .deck-info {
-  color: white;
-  font-weight: bold;
-  font-size: 1.2rem;
-}
-
-.current-trick {
-  display: flex;
-  gap: 2rem;
-  min-height: 140px;
-  align-items: center;
-}
-
-.trick-card {
+.trump-card-holder {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 0.5rem;
+  transform: rotate(90deg);
+  transform-origin: center;
 }
 
-.trick-label {
-  color: white;
-  font-weight: bold;
-  font-size: 0.9rem;
+.current-trick {
+  display: flex;
+  gap: 3rem;
+  min-height: 160px;
+  align-items: center;
+  justify-content: center;
+}
+
+.trick-card {
+  animation: cardSlideIn 0.3s ease-out;
+}
+
+@keyframes cardSlideIn {
+  from {
+    transform: translateY(-50px) scale(0.8);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+}
+
+.trick-card.my-card {
+  animation: cardSlideInFromBottom 0.3s ease-out;
+}
+
+@keyframes cardSlideInFromBottom {
+  from {
+    transform: translateY(50px) scale(0.8);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
 }
 
 .turn-indicator {
   background: #4CAF50;
   color: white;
-  padding: 1rem 2rem;
+  padding: 0.5rem 1rem;
   border-radius: 8px;
-  font-size: 1.5rem;
+  font-size: 1rem;
   font-weight: bold;
-  animation: pulse 1s infinite;
+  animation: pulse 1.5s infinite;
 }
 
 @keyframes pulse {
   0%, 100% {
     opacity: 1;
+    transform: scale(1);
   }
   50% {
-    opacity: 0.7;
+    opacity: 0.8;
+    transform: scale(1.05);
   }
 }
 
-.my-hand {
+.trick-winner-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   display: flex;
-  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 1000;
+  animation: fadeIn 0.3s ease-in;
+}
+
+.trick-winner-message {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 2rem 3rem;
+  border-radius: 16px;
+  font-size: 1.8rem;
+  font-weight: bold;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+  animation: zoomIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes zoomIn {
+  from {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.card-draw-animation {
+  position: fixed;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: cardDrawFly 0.8s ease-out;
+  z-index: 100;
+}
+
+@keyframes cardDrawFly {
+  0% {
+    transform: translate(-50%, -200%) scale(0.5);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0;
+  }
+}
+
+/* Counting Screen */
+.counting-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+  color: white;
+  padding: 2rem;
+}
+
+.counting-screen h1 {
+  margin-bottom: 2rem;
+  font-size: 2.5rem;
+}
+
+.counting-container {
+  display: flex;
+  gap: 4rem;
+  width: 100%;
+  max-width: 1200px;
+  justify-content: center;
+}
+
+.counting-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 2rem;
+  border-radius: 16px;
+}
+
+.counting-section h2 {
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+}
+
+.counting-score {
+  font-size: 3rem;
+  font-weight: bold;
+  color: #4CAF50;
+  margin-bottom: 1.5rem;
+  min-height: 60px;
+}
+
+.cards-display {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+  max-height: 400px;
+  overflow-y: auto;
+  padding: 1rem;
+}
+
+.counted-card {
+  animation: cardReveal 0.3s ease-out;
+}
+
+@keyframes cardReveal {
+  from {
+    transform: scale(0) rotate(-180deg);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1) rotate(0);
+    opacity: 1;
+  }
+}
+
+.counted-card .card {
+  width: 60px;
+  height: 90px;
+}
+
+.final-winner-announcement {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+  color: #333;
+  padding: 3rem 4rem;
+  border-radius: 20px;
+  text-align: center;
+  box-shadow: 0 15px 50px rgba(0, 0, 0, 0.5);
+  animation: winnerAppear 0.5s ease-out;
+  z-index: 1000;
+}
+
+@keyframes winnerAppear {
+  from {
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0;
+  }
+  to {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+}
+
+.final-winner-announcement h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.final-winner-announcement p {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+/* Game Over Screen */
+.game-over-screen {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
 }
 
 .game-over {
   background: rgba(255, 255, 255, 0.95);
-  padding: 2rem;
+  padding: 3rem;
   border-radius: 16px;
   text-align: center;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
 }
 
 .game-over h2 {
   margin: 0 0 1rem 0;
   color: #333;
+  font-size: 2.5rem;
 }
 
-.game-over p {
-  font-size: 1.5rem;
-  margin-bottom: 1rem;
+.final-score {
+  font-size: 1.3rem;
   color: #555;
+  margin-bottom: 2rem;
+  font-weight: bold;
 }
 
 .game-over button {
@@ -254,8 +721,10 @@
   border-radius: 8px;
   cursor: pointer;
   font-weight: bold;
+  transition: all 0.3s;
 }
 
 .game-over button:hover {
   background: #45a049;
+  transform: scale(1.05);
 }
