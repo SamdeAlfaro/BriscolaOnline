@@ -73,12 +73,18 @@ const Game = () => {
         setDice2(Math.floor(Math.random() * 6) + 1);
       }, 100);
       
-      setTimeout(() => {
-        clearInterval(interval);
-      }, 2000);
+      // Store interval so we can clear it when real values arrive
+      window.diceInterval = interval;
     });
 
     socket.on('diceRolled', ({ dice1, dice2, dealer, message }) => {
+      // Stop the animation immediately
+      if (window.diceInterval) {
+        clearInterval(window.diceInterval);
+        window.diceInterval = null;
+      }
+      
+      // Set the actual rolled values
       setDice1(dice1);
       setDice2(dice2);
       setDiceMessage(message);
@@ -207,6 +213,14 @@ const Game = () => {
     });
 
     return () => {
+      // Clean up intervals
+      if (window.diceInterval) {
+        clearInterval(window.diceInterval);
+      }
+      if (window.cutInterval) {
+        clearInterval(window.cutInterval);
+      }
+      
       socket.off('roomCreated');
       socket.off('roomJoined');
       socket.off('startDiceRoll');
