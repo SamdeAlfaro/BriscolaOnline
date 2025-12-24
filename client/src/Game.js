@@ -63,6 +63,10 @@ const Game = () => {
       setError('');
     });
 
+    socket.on('playerNumberUpdate', ({ playerNumber }) => {
+      setPlayerNumber(playerNumber);
+    });
+
     socket.on('startDiceRoll', () => {
       setGameState('diceRoll');
       setDiceRolling(true);
@@ -223,6 +227,7 @@ const Game = () => {
       
       socket.off('roomCreated');
       socket.off('roomJoined');
+      socket.off('playerNumberUpdate');
       socket.off('startDiceRoll');
       socket.off('diceRolled');
       socket.off('startShuffle');
@@ -283,10 +288,20 @@ const Game = () => {
     return () => clearTimeout(timer);
   }, [counting, currentCountIndex, myPile, opponentPile, myCountedScore, opponentCountedScore]);
 
+  // FIXED: Correct point values for Italian cards
+  // 1=Asso(Ace), 3=Tre(Three), 10=Re(King), 9=Cavallo(Queen/Knight), 8=Fante(Jack)
   const getCardPoints = (card) => {
     const pointValues = {
-      1: 11, 3: 10, 10: 4, 9: 3, 8: 2,
-      7: 0, 6: 0, 5: 0, 4: 0, 2: 0
+      1: 11,   // Asso (Ace): 11 points
+      3: 10,   // Tre (Three): 10 points
+      10: 4,   // Re (King): 4 points
+      9: 3,    // Cavallo (Queen/Knight): 3 points
+      8: 2,    // Fante (Jack): 2 points
+      7: 0,
+      6: 0,
+      5: 0,
+      4: 0,
+      2: 0
     };
     return pointValues[card.value] || 0;
   };
